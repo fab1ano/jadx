@@ -300,6 +300,15 @@ public class InsnNode extends LineAttrNode {
 		}
 	}
 
+	public void visitInsnsBottomUp(Consumer<InsnNode> visitor) {
+		for (InsnArg arg : this.getArguments()) {
+			if (arg.isInsnWrap()) {
+				((InsnWrapArg) arg).getWrapInsn().visitInsnsBottomUp(visitor);
+			}
+		}
+		visitor.accept(this);
+	}
+
 	/**
 	 * Visit this instruction and all inner (wrapped) instructions
 	 * To terminate visiting return non-null value

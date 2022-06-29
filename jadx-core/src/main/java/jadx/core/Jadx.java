@@ -17,6 +17,7 @@ import jadx.core.dex.visitors.AnonymousClassVisitor;
 import jadx.core.dex.visitors.AttachCommentsVisitor;
 import jadx.core.dex.visitors.AttachMethodDetails;
 import jadx.core.dex.visitors.AttachTryCatchVisitor;
+import jadx.core.dex.visitors.CfgExtractor;
 import jadx.core.dex.visitors.CheckCode;
 import jadx.core.dex.visitors.ClassModifier;
 import jadx.core.dex.visitors.ConstInlineVisitor;
@@ -221,6 +222,7 @@ public class Jadx {
 		if (args.isCfgOutput()) {
 			passes.add(DotGraphVisitor.dump());
 		}
+		passes.add(new CfgExtractor());
 		return passes;
 	}
 
